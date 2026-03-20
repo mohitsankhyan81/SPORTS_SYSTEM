@@ -1,8 +1,8 @@
 import nodemailer from "nodemailer"
 
-export const verifyemail=(email,token)=>{
+export const verifyemail=async(email,token)=>{
     const transport=nodemailer.createTransport({
-        service:email,
+        service:"gmail",
         auth:{
             user:process.env.MAIL_USER,
             pass:process.env.MAIL_PASS
@@ -40,5 +40,5 @@ export const verifyemail=(email,token)=>{
   `
     }
 
-    transport.sendMail(emailconfiger)
+  await transport.sendMail(emailconfiger)
 }

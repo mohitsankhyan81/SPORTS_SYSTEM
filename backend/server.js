@@ -2,10 +2,20 @@ import express from "express"
 import dotenv from "dotenv"
 import mongoose, { mongo } from "mongoose";
 import studrouter from "./router/student_router.js";
+import sportsrouter from "./router/sportsItem_router.js";
+import {v2 as cloudinary} from "cloudinary"
+import fileUpload from "express-fileupload";
+import contactrouter from "./router/contact_router.js";
+import notificationrouter from "./router/notification_router.js";
 dotenv.config();
 const app=express();
 app.use(express.json())
-const MONGO_URI=process.env.MONGO_URI
+
+app.use(fileUpload({
+    useTempFiles:true,
+    tempFileDir:"/tmp/"
+}))
+const MONGO_URI=process.env.MONGO_URI;
 try{
     mongoose.connect(MONGO_URI)
     console.log("Connected Successfully")
@@ -13,7 +23,15 @@ try{
 catch(error){
     console.log(error.message);
 }
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+});
 app.use("/api/stud",studrouter)
+app.use("/api/sport",sportsrouter);
+app.use("/api/cont",contactrouter);
+app.use("/api/note",notificationrouter);
 const port=process.env.PORT || 3455;
 app.listen(port,()=>{
     console.log(`http://localhost:${port}`)

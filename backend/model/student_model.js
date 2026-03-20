@@ -1,9 +1,14 @@
 import mongoose from "mongoose";
-
+import validator from "validator"
 const studentSchema = new mongoose.Schema({
     studname: { type: String, required: true },
     studid: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    email: { 
+        type: String,
+        required: true,
+        unique: true,
+        validate:[validator.isEmail,"This is not correct format"]
+     },
     password: { type: String, required: true },
     role: { type: String, enum: ["student", "admin"], required: true },
     token: { type: String, default: null },
