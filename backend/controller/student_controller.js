@@ -198,3 +198,18 @@ export const logout = async (req, res) => {
         return res.status(500).json({success:false,error:error.message});
     }
 };
+
+
+export const getprofile=async(req,res)=>{
+    try{
+        const {id}=req.params
+
+        const student= await stud.findById(id);
+        if(student){
+            return res.status(200).json({success:true,message:"Student profile",student:student})
+        }
+    }
+    catch(error){
+        return res.status(400).json({success:false,error:error.message})
+    }
+}

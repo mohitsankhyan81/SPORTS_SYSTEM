@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { sport } from "../model/sport_items.js";
 import {v2 as cloudinary} from "cloudinary";
 export const createSports=async(req,res)=>{
@@ -158,3 +159,37 @@ export const issueSports = async (req, res) => {
         });
     }
 };
+
+export const returnSports=async(req,res)=>{
+    try{
+        const {id}=req.params
+        const {textarea}=req.body;
+
+        if(!mongoose.Types.ObjectId.isValid(id)){
+            return res.status(400).json({success:false, message:"id not valid"});
+        }
+
+        const sports=await sport.findById(id);
+        if(!sports){
+            return res.status(400).json({success:false,message:"Sports not found"});
+        }
+
+        if(!sports.issuedto || !sports.issuedto.includes(textarea)){
+            return res.status(400).json({success:false, message:"user not found"});
+        }
+        
+        sports.issuedto.pull(textarea)
+
+        sports.totalcount+=1;
+
+        if(sports.totalcount>0){
+            sports.isavilable=true
+        }
+        await sports.save();
+
+        return res.status(200).json({success:true,message:"sports item returned",sports:sports})
+}
+    catch(error){
+        return res.status(500).json({success:false,message:true});
+    }
+}
