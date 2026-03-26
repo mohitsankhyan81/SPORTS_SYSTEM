@@ -1,5 +1,5 @@
 import express from "express"
-import { getprofile, login, logout, register, verification } from "../controller/student_controller.js";
+import { getprofile, login, logout, myprofile, register, verification } from "../controller/student_controller.js";
 import { authentcation } from "../middleware/student_middlware.js";
 
 const studrouter=express.Router();
@@ -9,4 +9,5 @@ studrouter.get("/verification",verification);
 studrouter.post("/login",login);
 studrouter.get("/logout",authentcation,logout);
 studrouter.get("/getprofile/:id",authentcation,getprofile);
+studrouter.get("/myprofile",authentcation,myprofile)
 export default studrouter

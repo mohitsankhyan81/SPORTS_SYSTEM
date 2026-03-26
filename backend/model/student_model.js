@@ -9,6 +9,16 @@ const studentSchema = new mongoose.Schema({
         unique: true,
         validate:[validator.isEmail,"This is not correct format"]
      },
+     photo:{
+        public_id:{
+            type:String,
+            required:true
+        },
+        url:{
+            type:String,
+            required:true
+        }
+     },
     password: { type: String, required: true },
     role: { type: String, enum: ["student", "admin"], required: true },
     token: { type: String, default: null },

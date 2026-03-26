@@ -25,7 +25,7 @@ export const createSports=async(req,res)=>{
         const sportsData=await sport.create({title,game,totalcount,photo:{
             public_id:cloudinaryres.public_id,
             url:cloudinaryres.url
-        }});
+        },createdBy: req.user._id});
         if(totalcount>0){
             sportsData.isavilable=true;
             await sportsData.save();
@@ -37,7 +37,6 @@ export const createSports=async(req,res)=>{
         return res.status(500).json({success:false,message:error.message});
     }
 }
-
 export const deleteSports=async(req,res)=>{
     try{
         const {id}=req.params;
@@ -191,5 +190,16 @@ export const returnSports=async(req,res)=>{
 }
     catch(error){
         return res.status(500).json({success:false,message:true});
+    }
+}
+
+
+export const mysports=async(req,res)=>{
+    try{
+        const myblog=await sport.find({ createdBy: req.user._id })
+        return res.status(200).json({myblog:myblog})
+    }
+    catch(error){
+        return res.status(400).json({success:false,message:error.message})
     }
 }

@@ -3,9 +3,20 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { verifyemail } from "../emailverify/verifyemail.js";
 import { session } from "../model/session_model.js";
-
+import { v2 as cloudinary } from 'cloudinary';
 export const register = async (req, res) => {
     try {
+
+        if(!req.files || !req.files.photo){
+            return res.status(400).json({success:false,message:"photo is required"})
+        }
+        const {photo}=req.files
+
+        const allowedformat=["image/jpg","image/png","image/jpeg"];
+
+        if(!allowedformat.includes(photo.mimetype)){
+            return res.status(400).json({success:false,message:"image format is not correct"})
+        }
         const { studname, studid, email, password, role } = req.body;
 
         if (!studname || !studid || !email || !password || !role) {
@@ -23,6 +34,9 @@ export const register = async (req, res) => {
             });
         }
 
+        const cloudinaryres=await cloudinary.uploader.upload(
+            photo.tempFilePath
+        )
         const hashpassword = await bcrypt.hash(password, 10);
 
         const newUser = await stud.create({
@@ -31,6 +45,10 @@ export const register = async (req, res) => {
             email,
             password: hashpassword,
             role,
+            photo:{
+                public_id:cloudinaryres.public_id,
+                url:cloudinaryres.url
+            },
             isVerified: false
         });
 
@@ -40,7 +58,7 @@ export const register = async (req, res) => {
             { expiresIn: "1d" }
         );
 
-        verifyemail(email,token);
+        await verifyemail(email,token);
         newUser.token=token
         await newUser.save();
         return res.status(200).json({
@@ -158,7 +176,7 @@ export const login = async (req, res) => {
             process.env.SECRET_KEY,
             { expiresIn: "10d" }
         );
-
+        
         const refreshtoken = jwt.sign(
             { id: user._id },
             process.env.SECRET_KEY,
@@ -199,7 +217,6 @@ export const logout = async (req, res) => {
     }
 };
 
-
 export const getprofile=async(req,res)=>{
     try{
         const {id}=req.params
@@ -211,5 +228,16 @@ export const getprofile=async(req,res)=>{
     }
     catch(error){
         return res.status(400).json({success:false,error:error.message})
+    }
+}
+
+export const myprofile=async(req,res)=>{
+    try{
+        const user=await req.user;
+        return res.status(200).json({user:user});
+    }
+    catch(error){
+        console.log(error);
+        return res.status(500).json({success:false,message:error.message})
     }
 }

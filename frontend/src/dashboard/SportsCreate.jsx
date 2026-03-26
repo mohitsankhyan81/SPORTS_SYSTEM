@@ -1,19 +1,27 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-const CreateAnnuncements = () => {
+const SportsCreate = () => {
   const [title, settitle] = useState("");
-  const [text, settext] = useState("");
-  const [link, setlink] = useState("");
+  const [game, setgames] = useState("");
+  const [totalcount, settotalcount] = useState("");
+  const [photo, setphoto] = useState(null);
+
   const token = JSON.parse(localStorage.getItem("token"));
 
   const handlesubmit = async (e) => {
     e.preventDefault();
 
+    const formdata = new FormData();
+    formdata.append("title", title);
+    formdata.append("game", game);
+    formdata.append("totalcount", totalcount);
+    formdata.append("photo", photo);
+
     try {
       const { data } = await axios.post(
-        "http://localhost:3455/api/note/createnotification",
-        {title,text,link},
+        "http://localhost:3455/api/sport/sports-creation",
+        formdata,
         {
           withCredentials: true,
           headers: {
@@ -34,7 +42,7 @@ const CreateAnnuncements = () => {
         <form onSubmit={handlesubmit}>
           
           <h1 className="text-xl font-bold mb-4 text-center">
-            Create Annuncements
+            Create Sports
           </h1>
 
           <div>
@@ -50,20 +58,28 @@ const CreateAnnuncements = () => {
           <div>
             <input
               type="text"
-              placeholder="Enter message"
-              value={text}
-              onChange={(e) => settext(e.target.value)}
+              placeholder="Enter About Game"
+              value={game}
+              onChange={(e) => setgames(e.target.value)}
               className="w-full mb-3 p-2 border rounded outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
           <div>
             <input
-              type="text"
-              placeholder="Link"
-              value={link}
-              onChange={(e) => setlink(e.target.value)}
+              type="number"
+              placeholder="Enter Total Games"
+              value={totalcount}
+              onChange={(e) => settotalcount(e.target.value)}
               className="w-full mb-3 p-2 border rounded outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+
+          <div>
+            <input
+              type="file"
+              onChange={(e) => setphoto(e.target.files[0])}
+              className="w-full mb-3"
             />
           </div>
 
@@ -71,7 +87,7 @@ const CreateAnnuncements = () => {
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
           >
-            Create Annuncements
+            Create Sports
           </button>
 
         </form>
@@ -81,4 +97,4 @@ const CreateAnnuncements = () => {
   );
 };
 
-export default CreateAnnuncements;
+export default SportsCreate;

@@ -1,5 +1,5 @@
 import express from "express"
-import { createSports, deleteSports, getallsports, getsinglesports, issueSports, returnSports, updatesports } from "../controller/sports_item.js";
+import { createSports, deleteSports, getallsports, getsinglesports, issueSports, mysports, returnSports, updatesports } from "../controller/sports_item.js";
 import { authentcation, isadmin } from "../middleware/student_middlware.js";
 
 const sportsrouter=express.Router();
@@ -10,5 +10,6 @@ sportsrouter.put("/updateSports/:id",authentcation,isadmin("admin"),updatesports
 sportsrouter.get("/getallsports",authentcation,getallsports);
 sportsrouter.get("/getsinglesports/:id",authentcation,getsinglesports);
 sportsrouter.post("/issuesportsitem/:id",authentcation,issueSports);
-sportsrouter.post("/returnsportsitem/:id",authentcation,returnSports);
+sportsrouter.post("/returnsportsitem/:id",authentcation,returnSports);;
+sportsrouter.get("/mysports",authentcation,isadmin("admin"),mysports);
 export default sportsrouter;

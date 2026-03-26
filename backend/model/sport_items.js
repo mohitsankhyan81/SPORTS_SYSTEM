@@ -33,6 +33,10 @@ const itemsSchema = new mongoose.Schema({
     },
     textarea: {
         type: String,
+    },
+    createdBy: {
+        type: mongoose.Schema.ObjectId,
+        ref: "stud"
     }
 });
 

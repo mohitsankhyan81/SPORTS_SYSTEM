@@ -12,6 +12,10 @@ const notificationSchema=new mongoose.Schema({
     link:{
         type:String,
         rquired:true
+    },
+    createBy:{
+        type:mongoose.Schema.ObjectId,
+        ref:"stud"
     }
 },{timestamps:true})
 
