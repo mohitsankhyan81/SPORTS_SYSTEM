@@ -20,6 +20,10 @@ app.use(fileUpload({
     useTempFiles:true,
     tempFileDir:"/tmp/"
 }))
+
+app.get("/h",(req,res)=>{
+    res.send("hello")
+})
 const MONGO_URI=process.env.MONGO_URI;
 try{
     mongoose.connect(MONGO_URI)
