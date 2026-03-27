@@ -71,30 +71,50 @@ const Details = () => {
             {sports?.game}
           </p>
 
-          <div className="mt-6 flex justify-between items-center">
-            <span className="text-blue-600 font-medium">
-              Avilable: {sports?.totalcount}
-            </span>
+        <div className="mt-6 flex flex-wrap gap-3 justify-between items-center">
 
-            <span className="text-sm text-gray-400">
-              ID: {sports?._id?.slice(0,6)}...
-            </span>
-          {profile.role!=="admin"&&(
-            <>
-          <Link to={`/issueSports/${sports._id}`} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
-            Issue Sports
-          </Link>
+          <span className="text-blue-600 font-medium">
+            Available: {sports?.totalcount}
+          </span>
 
-          <Link to={`/returnSport/${sports._id}`}>Return Sports</Link>
-          </>
+          <span className="text-sm text-gray-400">
+            ID: {sports?._id?.slice(0, 6)}...
+          </span>
+          {profile.role !== "admin" && (
+            <div className="flex gap-3">
+              <Link
+                to={`/issueSports/${sports._id}`}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 hover:scale-105 transition duration-200"
+              >
+                Issue
+              </Link>
+
+              <Link
+                to={`/returnSport/${sports._id}`}
+                className="bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 hover:scale-105 transition duration-200"
+              >
+                Return
+              </Link>
+            </div>
           )}
-            {profile.role === "admin" && (
-            <>
-              <Link to={`/sports/update/${sports?._id}`}>Update</Link>
-              <button onClick={()=>handledelete(sports?._id)}>Delete</button>
-            </>
+          {profile.role === "admin" && (
+            <div className="flex gap-3">
+              <Link
+                to={`/sports/update/${sports?._id}`}
+                className="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-600 hover:scale-105 transition duration-200"
+              >
+                Update
+              </Link>
+
+              <button
+                onClick={() => handledelete(sports?._id)}
+                className="bg-gray-800 text-white px-4 py-2 rounded-lg shadow hover:bg-black hover:scale-105 transition duration-200"
+              >
+                Delete
+              </button>
+            </div>
           )}
-          </div>
+        </div>
         </div>
 
       </div>
