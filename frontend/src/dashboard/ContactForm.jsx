@@ -19,7 +19,7 @@ const ContactForm = () => {
           }
         );
 
-        setcontact(data.contacts); // ✅ fix
+        setcontact(data.contacts);
       } catch (error) {
         console.log(error.message);
       }
@@ -48,8 +48,6 @@ const ContactForm = () => {
               key={item._id}
               className="bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-md hover:shadow-xl transition duration-300 border"
             >
-
-              {/* User Info */}
               <div className="flex justify-between items-center mb-3">
                 <h2 className="font-semibold text-gray-800">
                   {item.name}
@@ -58,13 +56,9 @@ const ContactForm = () => {
                   {item.studid}
                 </span>
               </div>
-
-              {/* Email */}
               <p className="text-sm text-blue-600 mb-2">
                 {item.email}
               </p>
-
-              {/* Message */}
               <p className="text-gray-600 text-sm leading-relaxed">
                 {item.message}
               </p>

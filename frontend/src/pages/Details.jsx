@@ -73,7 +73,7 @@ const Details = () => {
 
           <div className="mt-6 flex justify-between items-center">
             <span className="text-blue-600 font-medium">
-              Players: {sports?.totalcount}
+              Avilable: {sports?.totalcount}
             </span>
 
             <span className="text-sm text-gray-400">

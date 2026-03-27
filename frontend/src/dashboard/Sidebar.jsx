@@ -60,6 +60,12 @@ const Sidebar = ({ component, setcomponent }) => {
         Create Announcements
       </button>
       <button
+        onClick={() => handlecomponent("itemissuedashboard")}
+        className={`w-full py-2 rounded ${component === "itemissuedashboard" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+      >
+        Sports Issue to
+      </button>
+      <button
         onClick={() => handlecomponent("contact forms")}
         className={`w-full py-2 rounded ${component === "contact forms" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
       >
