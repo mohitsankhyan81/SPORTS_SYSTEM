@@ -5,23 +5,29 @@ import SportsGames from '../home/SportsGames';
 import Achievements from '../home/Achivements';
 
 const Home = () => {
-  const {isauthentcate,loading}=useAuth();
-  const navigator=useNavigate();
-  const token=JSON.parse(localStorage.getItem("token"));
-  if(!token){
-    navigator("/login")
-  }
-  useEffect(()=>{
-    if(!loading&&!isauthentcate){
+  const { isauthentcate, loading } = useAuth();
+  const navigator = useNavigate();
+
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    if (!token) {
+      navigator("/login");
+      return;
+    }
+
+    if (!loading && !isauthentcate) {
       navigator("/login");
     }
-  },[isauthentcate,navigator])
+
+  }, [isauthentcate, loading, navigator]);
+
   return (
     <div>
-      <SportsGames/>
-      <Achievements/>
+      <SportsGames />
+      <Achievements />
     </div>
   )
 }
 
-export default Home
+export default Home;
