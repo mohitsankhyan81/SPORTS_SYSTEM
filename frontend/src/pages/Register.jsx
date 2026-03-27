@@ -38,9 +38,21 @@ const Register = () => {
     setisauthenticate(true)
     toast.success("Register")
   }
-    catch(error){
-      console.log(error.message);
-    }
+catch (error) {
+  console.log("FULL ERROR:", error);
+
+  if (error.response) {
+    // 🔥 YAHAN 404 / 400 / 500 sab milega
+    console.log("STATUS:", error.response.status);   // 👉 404
+    console.log("DATA:", error.response.data);       // 👉 backend ka message
+    console.log("HEADERS:", error.response.headers);
+
+  } else if (error.request) {
+    console.log("REQUEST:", error.request); // request gayi but response nahi aaya
+  } else {
+    console.log("ERROR:", error.message);
+  }
+}
   }
   return (
     <div className="bg-[url('/abigail-keenan-8-s5QuUBtyM-unsplash.jpg')] bg-cover bg-center h-screen p-6">
