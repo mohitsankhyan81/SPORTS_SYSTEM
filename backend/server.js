@@ -10,12 +10,12 @@ import notificationrouter from "./router/notification_router.js";
 import feedbackrouter from "./router/feedback_router.js";
 import cors from "cors"
 dotenv.config();
-app.use(cors());
 const app=express();
 app.use(express.json())
-app.get("/h",(req,res)=>{
-    res.send("Hello");
-})
+app.use(cors({
+    origin:process.env.FRONT_END,
+    credentials:true
+}))
 app.use(fileUpload({
     useTempFiles:true,
     tempFileDir:"/tmp/"
