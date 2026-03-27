@@ -13,7 +13,7 @@ const Sidebar = ({ component, setcomponent }) => {
 
   const handlelogout=async()=>{
     try{
-      await axios.get("http://localhost:3455/api/stud/logout",{
+      await axios.get("https://sports-system-9e99.onrender.com/api/stud/logout",{
         withCredentials:true,
         headers:{ authorization:`Bearer ${token}` }
       })

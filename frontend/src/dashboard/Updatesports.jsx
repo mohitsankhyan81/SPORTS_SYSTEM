@@ -16,7 +16,7 @@ const Updatesports = () => {
     const fetchblog = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:3455/api/sport/getsinglesports/${id}`,
+          `https://sports-system-9e99.onrender.com/api/sport/getsinglesports/${id}`,
           {
             withCredentials: true,
             headers: { authorization: `Bearer ${token}` }
@@ -39,7 +39,7 @@ const handleUpdate = async (e) => {
 
   try {
     await axios.put(
-      `http://localhost:3455/api/sport/updateSports/${id}`,
+      `https://sports-system-9e99.onrender.com/api/sport/updateSports/${id}`,
       {
         title,
         game,

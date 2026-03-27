@@ -30,7 +30,7 @@ const Register = () => {
     formdata.append("password",password)
     formdata.append("role",role)
     formdata.append("photo",photo)
-    const res=await axios.post("http://localhost:3455/api/stud/register",formdata,{
+    const res=await axios.post("https://sports-system-9e99.onrender.com/api/stud/register",formdata,{
       withCredentials:true
     })
     console.log(res.data);

@@ -20,7 +20,7 @@ const Login = () => {
       return;
     }
     try{
-      const res=await axios.post("http://localhost:3455/api/stud/login",{role,email,password},{
+      const res=await axios.post("https://sports-system-9e99.onrender.com/api/stud/login",{role,email,password},{
         withCredentials:true,
       })
       const token=res.data.accesstoken;

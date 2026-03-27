@@ -7,7 +7,7 @@ const Sports = () => {
   useEffect(()=>{
     const mycreatedsports=async()=>{
       try{
-        const {data}=await axios.get("http://localhost:3455/api/sport/mysports",{
+        const {data}=await axios.get("https://sports-system-9e99.onrender.com/api/sport/mysports",{
           withCredentials:true,
           headers:{
             authorization:`Bearer ${token}`

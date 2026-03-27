@@ -14,7 +14,7 @@ const AuthProvider = ({children}) => {
 
     const fetchprofile=async()=>{
         try{
-            const {data}=await axios.get("http://localhost:3455/api/stud/myprofile",{
+            const {data}=await axios.get("https://sports-system-9e99.onrender.com/api/stud/myprofile",{
                 withCredentials:true,
                 headers:{
                     authorization:`Bearer ${token}`
@@ -35,7 +35,7 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
         const sportsitem=async()=>{
             try{
-            const {data}=await axios.get(`http://localhost:3455/api/sport/getallsports`,{
+            const {data}=await axios.get(`https://sports-system-9e99.onrender.com/api/sport/getallsports`,{
                 withCredentials:true,
                 headers:{authorization:`Bearer ${token}`}
             })
@@ -48,7 +48,7 @@ const AuthProvider = ({children}) => {
 
         const announcements=async()=>{
             try{
-                const {data}=await axios.get('http://localhost:3455/api/note/getallnotification',{
+                const {data}=await axios.get('https://sports-system-9e99.onrender.com/api/note/getallnotification',{
                     withCredentials:true,
                     headers:{
                         authorization:`Bearer ${token}`

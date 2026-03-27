@@ -12,7 +12,7 @@ const AnnDetails = () => {
     const fetchann = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:3455/api/note/getsinglenotification/${id}`,
+          `https://sports-system-9e99.onrender.com/api/note/getsinglenotification/${id}`,
           {
             withCredentials: true,
             headers: { authorization: `Bearer ${token}` }

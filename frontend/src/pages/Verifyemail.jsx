@@ -10,7 +10,7 @@ const Verifyemail = () => {
   useEffect(()=>{
     const emailverify=async()=>{
     try{
-      const res=await axios.get("http://localhost:3455/api/stud/verification",{
+      const res=await axios.get("https://sports-system-9e99.onrender.com/api/stud/verification",{
         headers:{
           authorization:`Bearer ${token}`
         }

@@ -14,7 +14,7 @@ const Contact = () => {
     e.preventDefault();
     try{
       const {data}=await axios.post(
-        `http://localhost:3455/api/cont/contact-form`,
+        `https://sports-system-9e99.onrender.com/api/cont/contact-form`,
         {name,email,studid,message},
         {withCredentials:true,
           headers:{

@@ -10,7 +10,7 @@ const ContactForm = () => {
     const fetchcontact = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:3455/api/cont/getcontactreport",
+          "https://sports-system-9e99.onrender.com/api/cont/getcontactreport",
           {
             withCredentials: true,
             headers: {

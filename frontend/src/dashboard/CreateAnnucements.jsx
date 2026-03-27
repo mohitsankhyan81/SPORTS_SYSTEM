@@ -12,7 +12,7 @@ const CreateAnnuncements = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3455/api/note/createnotification",
+        "https://sports-system-9e99.onrender.com/api/note/createnotification",
         {title,text,link},
         {
           withCredentials: true,
