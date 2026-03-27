@@ -12,6 +12,9 @@ import cors from "cors"
 dotenv.config();
 const app=express();
 app.use(express.json())
+app.use("/",(req,res)=>{
+    res.send("Hello");
+})
 app.use(cors({
     origin:process.env.FRONT_END,
     credentials:true
