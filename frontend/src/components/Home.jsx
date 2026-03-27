@@ -8,6 +8,9 @@ const Home = () => {
   const {isauthentcate,loading}=useAuth();
   const navigator=useNavigate();
   const token=JSON.parse(localStorage.getItem("token"));
+  if(!token){
+    navigator("/login")
+  }
   useEffect(()=>{
     if(!loading&&!isauthentcate){
       navigator("/login");
