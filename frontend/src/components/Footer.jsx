@@ -20,10 +20,19 @@ const Footer = () => {
             This platform helps players and organizers manage sports events easily.
           </p>
         </div>
+        <div className="text-sm space-y-1">
+          <p className="font-semibold mb-1">Contact</p>
 
-        <div className='text-sm'>
-          <p className='font-semibold mb-1'>Contact</p>
-          <Link to="/contact" className='hover:underline'>Contact Form</Link>
+          <Link to="/contact" className="hover:underline block">
+            Contact Form
+          </Link>
+
+          <a
+            href="https://github.com/mohitsankhyan81"
+            className="hover:underline block text-blue-400"
+          >
+            GitHub
+          </a>
         </div>
 
         <div className='text-sm'>
