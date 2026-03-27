@@ -17,6 +17,7 @@ import Details from './pages/Details.jsx';
 import IssueSports from './feature/IssueSports.jsx';
 import ReturnSports from './feature/ReturnSports.jsx';
 import AnnDetails from './pages/AnnDetails.jsx';
+import Updatesports from './dashboard/Updatesports.jsx';
 const App = () => {
   const location = useLocation();
 
@@ -53,6 +54,10 @@ const App = () => {
 
           {/* Annauncement Details */}
           <Route path='/annucment/:id' element={<AnnDetails/>}/>
+
+          {/* updatesports */}
+          <Route path='/sports/update/:id' element={<Updatesports/>}/>
+
         </Routes>
         {!hiddeNavbarFooter && <Footer/>}
       </div>

@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useAuth } from '../auth/AuthProvider';
 
 const Details = () => {
   const { id } = useParams();
   const [sports, setsports] = useState(null);
+  const navigate=useNavigate();
   const token = JSON.parse(localStorage.getItem("token")) || "";
   const {profile}=useAuth();
   useEffect(() => {
@@ -33,7 +34,22 @@ const Details = () => {
   if (!sports) {
     return <div className="text-center mt-10">Loading...</div>;
   }
-
+  const handledelete=async(id)=>{
+    try{
+      const {data}=await axios.delete(`http://localhost:3455/api/sport/deleteSports/${id}`,{
+        withCredentials:true,
+        headers:{
+        authorization:`Bearer ${token}`
+        }
+      })
+      console.log(data)
+      navigate("/dashboard")
+      setsports(null)
+    }
+    catch(error){
+      console.log(error.message)
+    }
+  }
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex justify-center">
       <div className="bg-white max-w-3xl w-full rounded-xl shadow-md overflow-hidden">
@@ -71,6 +87,12 @@ const Details = () => {
 
           <Link to={`/returnSport/${sports._id}`}>Return Sports</Link>
           </>
+          )}
+            {profile.role === "admin" && (
+            <>
+              <Link to={`/sports/update/${sports?._id}`}>Update</Link>
+              <button onClick={()=>handledelete(sports?._id)}>Delete</button>
+            </>
           )}
           </div>
         </div>

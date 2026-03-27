@@ -6,4 +6,4 @@ const contactrouter=express.Router();
 
 contactrouter.post("/contact-form",authentcation,contactcontroller);
 contactrouter.get("/getcontactreport",authentcation,isadmin("admin"),getcontactreport);
-export default contactrouter
+export default contactrouter;
