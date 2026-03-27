@@ -23,7 +23,7 @@ const Sports = () => {
     mycreatedsports();
   },[])
   return (
-    <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6 max-w-6xl mx-auto bg-slate-500">
+    <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6 max-w-6xl mx-auto">
       {sports.map((sport) => (
         <Link to={`/details/${sport._id}`} key={sport._id}>
           

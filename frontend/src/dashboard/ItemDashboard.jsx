@@ -20,7 +20,7 @@ const ItemDashboard = () => {
                   ? 'bg-blue-600 text-white'
                   : 'bg-blue-300 text-gray-900 hover:bg-blue-400'}`}
             >
-              {game.title}
+              {game.title}   {game.totalcount}
             </button>
           ))
         ) : (

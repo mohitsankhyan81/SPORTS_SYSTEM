@@ -16,7 +16,7 @@ const SportsGames = () => {
     return matchSearch && matchGame;
   });
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-slate-600 p-6">
       <div className="max-w-6xl mx-auto mb-6 flex flex-col sm:flex-row gap-4 justify-between">
         <input
           type="text"
