@@ -12,7 +12,7 @@ import cors from "cors"
 dotenv.config();
 const app=express();
 app.use(express.json())
-app.use("/h",(req,res)=>{
+app.get("/h",(req,res)=>{
     res.send("Hello");
 })
 app.use(cors({
