@@ -42,7 +42,6 @@ catch (error) {
   console.log("FULL ERROR:", error);
 
   if (error.response) {
-    // 🔥 YAHAN 404 / 400 / 500 sab milega
     console.log("STATUS:", error.response.status);   // 👉 404
     console.log("DATA:", error.response.data);       // 👉 backend ka message
     console.log("HEADERS:", error.response.headers);
