@@ -57,8 +57,9 @@ export const register = async (req, res) => {
             process.env.SECRET_KEY,
             { expiresIn: "1d" }
         );
-
-        verifyemail(email,token);
+        verifyemail(email,token).catch(err =>
+        console.log("Mail failed:", err.message)
+        );
         newUser.token=token
         await newUser.save();
         return res.status(200).json({

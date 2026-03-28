@@ -14,11 +14,8 @@ const app=express();
 app.use(express.json())
 import cors from "cors";
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://sports-system.vercel.app"
-  ],
-  credentials: true
+  origin: "*",
+  credentials:true
 }));
 app.use(fileUpload({
     useTempFiles:true,
