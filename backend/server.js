@@ -12,10 +12,14 @@ import cors from "cors"
 dotenv.config();
 const app=express();
 app.use(express.json())
+import cors from "cors";
 app.use(cors({
-    origin:process.env.FRONT_END ||"http://localhost:5173",
-    credentials:true
-}))
+  origin: [
+    "http://localhost:5173",
+    "https://sports-system.vercel.app"
+  ],
+  credentials: true
+}));
 app.use(fileUpload({
     useTempFiles:true,
     tempFileDir:"/tmp/"
