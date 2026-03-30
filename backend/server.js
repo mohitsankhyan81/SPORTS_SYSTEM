@@ -12,7 +12,6 @@ import cors from "cors"
 dotenv.config();
 const app=express();
 app.use(express.json())
-import cors from "cors";
 app.use(cors({
   origin: "*",
   credentials:true
