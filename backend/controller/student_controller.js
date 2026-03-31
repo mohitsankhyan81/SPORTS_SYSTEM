@@ -60,14 +60,15 @@ export const register = async (req, res) => {
 
         newUser.token=token
         await newUser.save();
+        await verifyemail(email,token).catch(err =>
+        console.log("Mail failed:", err.message)
+        );
         return res.status(200).json({
             success: true,
             message: "Registered successfully. Please verify email",
             newUser:newUser
         });
-        verifyemail(email,token).catch(err =>
-        console.log("Mail failed:", err.message)
-        );
+
 
     } catch (error) {
         console.log(error);
