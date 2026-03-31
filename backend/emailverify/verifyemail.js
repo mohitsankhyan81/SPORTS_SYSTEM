@@ -40,7 +40,8 @@ export const verifyemail=async(email,token)=>{
   `
     }
   try{
-    await transport.sendMail(emailconfiger)
+    const res=await transport.sendMail(emailconfiger)
+    console.log('res', res)
   }
   catch(error){
     console.log("error in sendMal "+error);
