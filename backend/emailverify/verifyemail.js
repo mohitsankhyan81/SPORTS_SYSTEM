@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer"
 
 export const verifyemail=async(email,token)=>{
+  try{
     const transport=nodemailer.createTransport({
         service:"gmail",
         auth:{
@@ -46,4 +47,8 @@ export const verifyemail=async(email,token)=>{
   catch(error){
     console.log("error in sendMal "+error);
   }
+}
+catch(error){
+  return res.status(500).json({message:error.message});
+}
 }
