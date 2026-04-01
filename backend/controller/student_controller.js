@@ -60,7 +60,7 @@ export const register = async (req, res) => {
 
         newUser.token=token
         await newUser.save();
-        await verifyemail(email,token).catch(err =>
+        verifyemail(email,token).catch(err =>
         console.log("Mail failed:", err.message)
         );
         return res.status(200).json({
