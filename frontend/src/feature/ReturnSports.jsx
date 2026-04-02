@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import { useAuth } from '../auth/AuthProvider'
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ReturnSports = () => {
     const { id } = useParams();
     const { profile } = useAuth();
     const [textarea, settextarea] = useState("");
     const token = JSON.parse(localStorage.getItem("token"));
+    const navigator=useNavigate();
+    const handlepage=()=>{
+        navigator(`/details/${id}`)
+    }
 
     const handleReturn = async (e) => {
         e.preventDefault();
@@ -30,7 +34,7 @@ const ReturnSports = () => {
 
     return (
         <div className="bg-[url('/abigail-keenan-8-s5QuUBtyM-unsplash.jpg')] bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-6">
-            
+            <MoveLeft size={136} strokeWidth={1.75} className="relative -top-6" onClick={handlepage}/>
             {profile?.photo?.url && (
                 <img 
                     src={profile.photo.url} 
