@@ -33,7 +33,7 @@ export const register = async (req, res) => {
                 message: "User already exists"
             });
         }
-
+        console.log("image uploading...");
         const cloudinaryres=await cloudinary.uploader.upload(
             photo.tempFilePath
         )
@@ -60,9 +60,7 @@ export const register = async (req, res) => {
 
         newUser.token=token
         await newUser.save();
-        verifyemail(email,token).catch(err =>
-        console.log("Mail failed:", err.message)
-        );
+        await verifyemail(email,token)
         return res.status(200).json({
             success: true,
             message: "Registered successfully. Please verify email",

@@ -1,54 +1,25 @@
-import nodemailer from "nodemailer"
+import nodemailer from "nodemailer";
 
-export const verifyemail=async(email,token)=>{
-  try{
-    const transport=nodemailer.createTransport({
-        service:"gmail",
-        auth:{
-            user:process.env.MAIL_USER,
-            pass:process.env.MAIL_PASS
-        }
-    })
-
-    const emailconfiger={
-        from:process.env.MAIL_USER,
-        to:email,
-        subject:"Email Verification",
-        html:`
-         <div style="font-family: Arial, sans-serif; background:#f4f4f4; padding:40px;">
-  
-    <div style="max-width:600px; margin:auto; background:white; padding:30px; border-radius:10px; text-align:center;">
-      
-      <h2 style="color:#333;">Email Verification</h2>
-      
-      <p style="color:#555;">
-        Thank you for registering. Please verify your email address to activate your account.
-      </p>
-      
-      <a href="https://sports-system.vercel.app/verifyemail/${token}" 
-         style="display:inline-block; margin-top:20px; padding:12px 25px; 
-         background:#4CAF50; color:white; text-decoration:none; border-radius:5px;">
-         Verify Email
-      </a>
-
-      <p style="margin-top:20px; color:#888; font-size:14px;">
-        If you did not create an account, please ignore this email.
-      </p>
-
-    </div>
-
-  </div>
-  `
+const transport = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS
     }
-  try{
-    const res=await transport.sendMail(emailconfiger)
-    console.log('res', res)
-  }
-  catch(error){
-    console.log("error in sendMal "+error);
-  }
-}
-catch(error){
-  return res.status(500).json({message:error.message});
-}
-}
+});
+
+export const verifyemail = async (email, token) => {
+    try {
+        const emailconfiger = {
+            from: process.env.MAIL_USER,
+            to: email,
+            subject: "Email Verification",
+            html: `<a href="https://sports-system.vercel.app/verifyemail/${token}">Verify Email</a>`
+        };
+
+        const res = await transport.sendMail(emailconfiger);
+        console.log("Email sent:", res);
+    } catch (error) {
+        console.log("Mail failed:", error.message);
+    }
+};
