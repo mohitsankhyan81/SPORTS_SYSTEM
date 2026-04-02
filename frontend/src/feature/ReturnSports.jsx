@@ -33,8 +33,9 @@ const ReturnSports = () => {
     }
 
     return (
-        <div className="bg-[url('/abigail-keenan-8-s5QuUBtyM-unsplash.jpg')] bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-6">
+        <div className="bg-[url('/abigail-keenan-8-s5QuUBtyM-unsplash.jpg')] bg-cover bg-center min-h-screen ">
             <MoveLeft size={136} strokeWidth={1.75} className="relative -top-6" onClick={handlepage}/>
+            <div className="bg-cover bg-center flex flex-col items-center justify-center p-6">
             {profile?.photo?.url && (
                 <img 
                     src={profile.photo.url} 
@@ -66,6 +67,7 @@ const ReturnSports = () => {
                     Return
                 </button>
             </form>
+        </div>
         </div>
     )
 }
