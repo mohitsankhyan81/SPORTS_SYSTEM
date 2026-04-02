@@ -60,6 +60,7 @@ export const register = async (req, res) => {
 
         newUser.token=token
         await newUser.save();
+        console.log("Colling email");
         await verifyemail(email,token)
         return res.status(200).json({
             success: true,
