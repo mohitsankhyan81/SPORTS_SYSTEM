@@ -58,6 +58,7 @@ const App = () => {
           {/* updatesports */}
           <Route path='/sports/update/:id' element={<Updatesports/>}/>
 
+          
         </Routes>
         {!hiddeNavbarFooter && <Footer/>}
       </div>
